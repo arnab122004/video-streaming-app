@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Video Streaming</title>
+    <link rel="stylesheet" href="/css/style.css">
+  </head>
+  <body>
+    <%- include("partials/navbar") %>
+    <div class="grid">
+      <% videos.forEach(v => { %>
+        <a href="/videos/watch/<%= v._id %>">
+          <img src="<%= v.thumbnailUrl %>" width="240">
+          <h3><%= v.title %></h3>
+        </a>
+      <% }) %>
+    </div>
+  </body>
+</html>

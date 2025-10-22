@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title><%= user.username %>'s Liked Videos</title>
+
+  <!-- ✅ Include your main site CSS so navbar styles work -->
+  <link rel="stylesheet" href="/css/style.css" />
+
+  <style>
+    body {
+      background-color: #f9f9f9;
+      color: #333;
+      font-family: "Segoe UI", Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+
+    nav {
+      background: #fff;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+
+    main {
+      padding: 20px 30px;
+      max-width: 1100px;
+      margin: auto;
+    }
+
+    h1 {
+      text-align: center;
+      color: #222;
+      margin-top: 30px;
+      font-size: 24px;
+    }
+
+    .video-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+      gap: 15px;
+      margin-top: 25px;
+    }
+
+    .video-card {
+      background: #fff;
+      border: 1px solid #ddd;
+      border-radius: 10px;
+      overflow: hidden;
+      text-align: center;
+      transition: all 0.2s ease;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    }
+
+    .video-card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .thumbnail {
+      width: 100%;
+      height: 100px;
+      object-fit: cover;
+      cursor: pointer;
+    }
+
+    .video-title {
+      padding: 6px;
+      font-size: 13px;
+      color: #333;
+      font-weight: 500;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .no-videos {
+      text-align: center;
+      margin-top: 50px;
+      color: #666;
+      font-size: 15px;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ✅ Navbar -->
+  <%- include("partials/navbar") %>
+
+  <main>
+    <h1><%= user.username %>'s Liked Videos</h1>
+
+    <% if (likedVideos.length === 0) { %>
+      <p class="no-videos">You haven't liked any videos yet.</p>
+    <% } else { %>
+      <div class="video-grid">
+        <% likedVideos.forEach(video => { %>
+          <div class="video-card">
+            <img 
+              src="<%= video.thumbnailUrl %>"
+              alt="<%= video.title %>"
+              class="thumbnail"
+              onclick="window.location.href='/videos/watch/<%= video._id %>'"
+            />
+            <p class="video-title"><%= video.title %></p>
+          </div>
+        <% }) %>
+      </div>
+    <% } %>
+  </main>
+</body>
+</html>

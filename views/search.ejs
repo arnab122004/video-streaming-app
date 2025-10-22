@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Search Results</title>
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+  <%- include("partials/navbar") %>
+
+  <h1>Search Results for "<%= query %>"</h1>
+
+  <% if (videos.length > 0) { %>
+    <div class="grid">
+      <% videos.forEach(video => { %>
+        <a href="/videos/watch/<%= video._id %>">
+          <img src="<%= video.thumbnailUrl %>" width="240">
+          <h3><%= video.title %></h3>
+        </a>
+      <% }) %>
+    </div>
+  <% } else { %>
+    <p>No videos found matching your search criteria.</p>
+  <% } %>
+</body>
+</html>
