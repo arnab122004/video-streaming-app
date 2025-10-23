@@ -8,7 +8,6 @@ import { createSessionMiddleware, userMiddleware } from "./config/sessionConfig.
 import homeRoutes from "./routes/homeRoutes.js";
 import videoRoutes from "./routes/videoRoutes.js";
 import searchRoutes from "./routes/searchRoutes.js";
-import { initEmailService } from "./services/emailService.js"; 
 import userRouter from "./routes/userRoutes.js"; // adjust path if needed
 import profileRouter from "./routes/profileRoutes.js";
 import likeRouter from "./routes/likeRoutes.js";
@@ -18,8 +17,6 @@ import showLikedVideosRouter from "./routes/likedVideosRoutes.js";
 dotenv.config();
 const app = express();
 
-// Initialize email service ONCE at startup ✅
-initEmailService();
 
 // Fix __dirname
 const __filename = fileURLToPath(import.meta.url);
